@@ -187,11 +187,10 @@ const ProductsPage = () => {
       <>
       <div className="position-absolute top-0 start-0 w-100 h-100" style={{minHeight: '100vh', minWidth: '100vw', zIndex: 0, background: 'linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%)', fontFamily: 'Segoe UI, Roboto, Arial, sans-serif'}}>
         {/* Header */}
-        <header className="w-100 bg-white shadow-sm px-4 px-md-5 py-3 d-flex align-items-center justify-content-between" style={{position: 'sticky', top: 0, zIndex: 100}}>
-          <div className="d-flex align-items-center gap-2">
-            <span className="fs-4 fw-bold text-primary" style={{letterSpacing: '1px'}}>Product App</span>
+        <header className="w-100 bg-white shadow-sm px-4 px-md-5 py-3 d-flex align-items-center justify-content-center" style={{position: 'sticky', top: 0, zIndex: 100}}>
+          <div className="d-flex align-items-center gap-2 justify-content-center w-100">
+            <span className="fs-4 fw-bold text-primary text-center w-100" style={{letterSpacing: '1px'}}>Product App</span>
           </div>
-          
         </header>
         <div className="d-flex flex-column w-100 h-100" style={{paddingTop: '80px'}}>
           <div className="w-100 h-100 px-0 px-sm-2 px-md-3 px-lg-4">
