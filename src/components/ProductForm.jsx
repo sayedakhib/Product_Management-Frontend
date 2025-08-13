@@ -13,16 +13,32 @@ const ProductForm = ({ onSubmit, initialData = {} }) => {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (files) {
+    if (files && files.length > 0) {
       setForm({ ...form, [name]: files[0] });
     } else {
       setForm({ ...form, [name]: value });
     }
   };
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onSubmit(form);
+    let submitData = { ...form };
+    if (form.image && form.image instanceof File) {
+      // Convert file to base64
+      submitData.image = await toBase64(form.image);
+    }
+    onSubmit(submitData);
+  };
+
+  // Helper to convert file to base64
+  const toBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
   };
 
   return (
@@ -50,7 +66,7 @@ const ProductForm = ({ onSubmit, initialData = {} }) => {
         </select>
       </div>
       <div className="mb-2">
-        <input type="file" className="form-control" name="image" accept="image/*" onChange={handleChange} />
+        <input type="file" className="form-control mb-2" name="image" accept="image/*" onChange={handleChange} />
       </div>
   <button type="submit" className="btn btn-success w-100 shadow-sm">Save</button>
     </form>
